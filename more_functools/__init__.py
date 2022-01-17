@@ -26,13 +26,7 @@ __all__ = [
 ]
 
 
-def append(value, iterable):
-    for element in iterable:
-        yield element
-    yield value
-
-
-def prepend(value, iterable):
+def _prepend(value, iterable):
     yield value
     for element in iterable:
         yield element
@@ -205,7 +199,7 @@ def scanl(func, start, iterable):
     func: the function to scan with
     start: the initial starting value
     iterable: the iterable to scan over"""
-    return accumulate(prepend(start, iterable), func)
+    return accumulate(_prepend(start, iterable), func)
 
 
 def scanl1(func, iterable):
