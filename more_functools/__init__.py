@@ -1,13 +1,17 @@
 """more_functools: A python library that extends functools."""
 from functools import reduce, wraps
 from itertools import accumulate
+from inspect import getargspec
 
 __version__ = "0.1.0"
 
 __all__ = [
     "compose",
+    "composer",
     "const",
     "constantly",
+    "curry",
+    "curryr",
     "flip",
     "foldl",
     "foldl1",
@@ -32,6 +36,40 @@ def prepend(value, iterable):
     yield value
     for element in iterable:
         yield element
+
+
+def partial(func, *args, **kwargs):
+    """partial: Partially applies arguments.
+    New keyworded arguments extend and override kwargs."""
+    return lambda *a, **kw: func(*(args + a), **dict(kwargs, **kw))
+
+
+def partialr(func, *args, **kwargs):
+    """partialr: Partially applies last arguments.
+    New keyworded arguments extend and override kwargs."""
+    return lambda *a, **kw: func(*(a + args), **dict(kwargs, **kw))
+
+
+def curry(func, n=None):
+    """curry: make function into a curried version"""
+    if n is None:
+        n = len(getargspec(func).args)
+
+    if n < 1:
+        return func
+    else:
+        return lambda x: curry(partial(func, x), n - 1)
+
+
+def curryr(func, n=None):
+    """curryr: make function into a curried version, using last argument"""
+    if n is None:
+        n = len(getargspec(func).args)
+
+    if n < 1:
+        return func
+    else:
+        return lambda x: curryr(partialr(func, x), n - 1)
 
 
 def flip(func):
@@ -78,6 +116,15 @@ def compose(*funcs, **kwargs):
             return ret
 
     return wrapper
+
+
+def composer(*funcs, **kwargs):
+    """compose: reverse compose the funcs into a single function
+
+    kwargs:
+        unpack: if unpack is True, then unpack the result of each function before passing it to the next
+    """
+    return compose(*reversed(funcs), **kwargs)
 
 
 def const(x, *args, **kwargs):
