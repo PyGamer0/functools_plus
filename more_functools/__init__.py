@@ -3,7 +3,7 @@ from functools import reduce, wraps
 from itertools import accumulate
 from inspect import getargspec
 
-__version__ = "0.1.0"
+__version__ = "0.1.1"
 
 __all__ = [
     "compose",

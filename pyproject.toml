@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "more-functools"
-version = "0.1.0"
+version = "0.1.1"
 description = "More functools library for python"
 license = "MIT"
 readme = "README.md"
