@@ -27,3 +27,7 @@ def test_foldl1():
 
 def test_foldr():
     assert mft.foldr(lambda x, y: x - y, 0, [1, 2, 3]) == 2
+
+
+def test_foldr1():
+    assert mft.foldr1(lambda x, y: x - y, [1, 2, 3]) == 2
