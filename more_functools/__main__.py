@@ -207,3 +207,12 @@ def scanr1(func, iterable):
     func: the function to scan with
     iterable: the iterable to scan over"""
     return _scanr1(func, iter(iterable))
+
+
+def zipWith(func, *iterables):
+    """zipWith: zip the iterables and apply func to each of them
+
+    func: the function to apply
+    *iterables: the iterables
+    """
+    return map(lambda args: func(*args), zip(*iterables))
