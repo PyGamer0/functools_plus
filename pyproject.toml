@@ -2,6 +2,10 @@
 name = "more-functools"
 version = "0.1.0"
 description = "More functools library for python"
+license = "MIT"
+readme = "README.md"
+homepage = "https://github.com/PyGamer0/more-functools"
+repository = "https://github.com/PyGamer0/more-functools"
 authors = ["PyGamer0"]
 
 [tool.poetry.dependencies]
