@@ -77,7 +77,7 @@ def flip(func):
 
     @wraps(func)
     def wrapper(*args, **kwargs):
-        return func(*reversed(*args), **kwargs)
+        return func(*reversed(args), **kwargs)
 
     return wrapper
 
