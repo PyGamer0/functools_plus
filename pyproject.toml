@@ -1,11 +1,11 @@
 [tool.poetry]
-name = "more-functools"
+name = "functools_plus"
 version = "0.1.1"
 description = "More functools library for python"
 license = "MIT"
 readme = "README.md"
-homepage = "https://github.com/PyGamer0/more-functools"
-repository = "https://github.com/PyGamer0/more-functools"
+homepage = "https://github.com/PyGamer0/functools_plus"
+repository = "https://github.com/PyGamer0/functools_plus"
 authors = ["PyGamer0"]
 
 [tool.poetry.dependencies]

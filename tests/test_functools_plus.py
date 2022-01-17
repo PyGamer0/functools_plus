@@ -1,4 +1,4 @@
-import more_functools as mft
+import functools_plus as mft
 
 
 def test_compose():

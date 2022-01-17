@@ -1,4 +1,4 @@
-"""more_functools: A python library that extends functools."""
+"""functools_plus: A python library that extends functools."""
 from functools import reduce, wraps
 from itertools import accumulate
 from inspect import getargspec
