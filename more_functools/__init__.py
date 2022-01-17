@@ -49,8 +49,10 @@ def curry(func, n=None):
     if n is None:
         n = len(getargspec(func).args)
 
-    if n < 1:
+    if n <= 1:
         return func
+    elif n == 2:
+        return lambda x: lambda y: func(x, y)
     else:
         return lambda x: curry(partial(func, x), n - 1)
 
@@ -60,8 +62,10 @@ def curryr(func, n=None):
     if n is None:
         n = len(getargspec(func).args)
 
-    if n < 1:
+    if n <= 1:
         return func
+    elif n == 2:
+        return lambda x: lambda y: func(y, x)
     else:
         return lambda x: curryr(partialr(func, x), n - 1)
 
