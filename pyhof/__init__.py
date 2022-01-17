@@ -1,4 +1,4 @@
-"""functools_plus: A python library that extends functools."""
+"""pyhof: Python High Order Functions library"""
 from functools import reduce, wraps
 from itertools import accumulate
 from inspect import getargspec

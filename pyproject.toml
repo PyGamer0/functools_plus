@@ -1,7 +1,7 @@
 [tool.poetry]
-name = "functools_plus"
+name = "pyhof"
 version = "0.1.1"
-description = "More functools library for python"
+description = "Python High Order Functions library"
 license = "MIT"
 readme = "README.md"
 homepage = "https://github.com/PyGamer0/functools_plus"
