@@ -23,6 +23,7 @@ __all__ = [
     "scanl1",
     "scanr",
     "scanr1",
+    "power",
     "zipWith",
 ]
 
@@ -257,6 +258,11 @@ def scanr1(func, iterable):
     func: the function to scan with
     iterable: the iterable to scan over"""
     return _scanr1(func, iter(iterable))
+
+
+def power(func, n):
+    """power: return a function that applies func n times"""
+    return compose(*([func] * n))
 
 
 def outer_product(func, x, y):
