@@ -18,6 +18,7 @@ __all__ = [
     "foldr",
     "foldr1",
     "identity",
+    "outer_product",
     "scanl",
     "scanl1",
     "scanr",
@@ -256,6 +257,18 @@ def scanr1(func, iterable):
     func: the function to scan with
     iterable: the iterable to scan over"""
     return _scanr1(func, iter(iterable))
+
+
+def outer_product(func, x, y):
+    """outer_product: outer product of func with x and y"""
+    res = []
+    tmp = []
+    for i in x:
+        tmp = []
+        for j in y:
+            tmp.append(func(i, j))
+        res.append(tmp)
+    return res
 
 
 def zipWith(func, *iterables):
