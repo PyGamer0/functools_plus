@@ -275,12 +275,3 @@ def outer_product(func, x, y):
             tmp.append(func(i, j))
         res.append(tmp)
     return res
-
-
-def zipWith(func, *iterables):
-    """zipWith: zip the iterables and apply func to each of them
-
-    func: the function to apply
-    *iterables: the iterables
-    """
-    return map(lambda args: func(*args), zip(*iterables))
