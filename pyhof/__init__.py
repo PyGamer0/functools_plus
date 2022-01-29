@@ -3,7 +3,7 @@ from functools import reduce, wraps
 from itertools import accumulate
 from inspect import getargspec
 
-__version__ = "0.1.1"
+__version__ = "0.1.3"
 
 __all__ = [
     "compose",
@@ -125,7 +125,7 @@ def foldl(func, start, iterable):
     start: the initial starting value
     iterable: the iterable to reduce over
     """
-    return reduce(func, iterable, start)
+    return list(reduce(func, iterable, start))
 
 
 def foldl1(func, iterable):
@@ -134,7 +134,7 @@ def foldl1(func, iterable):
     func: the function to reduce with
     iterable: the iterable to reduce over
     """
-    return reduce(func, iterable)
+    return list(reduce(func, iterable))
 
 
 def _foldr(func, start, iterable):
@@ -152,7 +152,7 @@ def foldr(func, start, iterable):
     start: the initial starting value
     iterable: the iterable to reduce over
     """
-    return _foldr(func, start, iter(iterable))
+    return list(_foldr(func, start, iter(iterable)))
 
 
 def _foldr1(func, iterable):
@@ -170,7 +170,7 @@ def foldr1(func, iterable):
     iterable: the iterable to reduce over
     """
     try:
-        return _foldr1(func, iter(iterable))
+        return list(_foldr1(func, iter(iterable)))
     except StopIteration:
         raise TypeError("foldr1() of empty sequence")
 
@@ -181,7 +181,7 @@ def scanl(func, start, iterable):
     func: the function to scan with
     start: the initial starting value
     iterable: the iterable to scan over"""
-    return accumulate(_prepend(start, iterable), func)
+    return list(accumulate(_prepend(start, iterable), func))
 
 
 def scanl1(func, iterable):
@@ -189,7 +189,7 @@ def scanl1(func, iterable):
 
     func: the function to scan with
     iterable: the iterable to scan over"""
-    return accumulate(iterable, func)
+    return list(accumulate(iterable, func))
 
 
 def _scanr(func, start, iterable):
@@ -212,7 +212,7 @@ def scanr(func, start, iterable):
     func: the function to scan with
     start: the initial starting value
     iterable: the iterable to scan over"""
-    return _scanr(func, start, iter(iterable))
+    return list(_scanr(func, start, iter(iterable)))
 
 
 def _scanr1(func, iterable):
@@ -233,7 +233,7 @@ def scanr1(func, iterable):
 
     func: the function to scan with
     iterable: the iterable to scan over"""
-    return _scanr1(func, iter(iterable))
+    return list(_scanr1(func, iter(iterable)))
 
 
 def power(func, n):
