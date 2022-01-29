@@ -24,7 +24,6 @@ __all__ = [
     "scanr",
     "scanr1",
     "power",
-    "zipWith",
 ]
 
 
@@ -87,44 +86,21 @@ def identity(x):
     return x
 
 
-def compose(*funcs, **kwargs):
-    """compose: compose the funcs into a single function
-
-    kwargs:
-        unpack: if unpack is True, then unpack the result of each function before passing it to the next
-    """
-    unpack = kwargs.get("unpack", False)
-    if not funcs:
+def compose(*funcs):
+    """compose: compose the funcs into a single function"""
+    if len(funcs) == 0:
         return identity
-    outer, funcs = funcs[-1], reversed(funcs[:-1])
-    if unpack:
-
-        @wraps(outer)
-        def wrapper(*args, **kwargs):
-            ret = outer(*args, **kwargs)
-            for func in funcs:
-                ret = func(*ret)
-            return ret
-
+    elif len(funcs) == 1:
+        return funcs[0]
     else:
-
-        @wraps(outer)
-        def wrapper(*args, **kwargs):
-            ret = outer(*args, **kwargs)
-            for func in funcs:
-                ret = func(ret)
-            return ret
-
-    return wrapper
+        return lambda *args, **kwargs: compose(*(funcs[:-1]))(
+            funcs[-1](*args, **kwargs)
+        )
 
 
 def composer(*funcs, **kwargs):
-    """compose: reverse compose the funcs into a single function
-
-    kwargs:
-        unpack: if unpack is True, then unpack the result of each function before passing it to the next
-    """
-    return compose(*reversed(funcs), **kwargs)
+    """compose: reverse compose the funcs into a single function"""
+    return compose(*reversed(funcs))
 
 
 def const(x, *args, **kwargs):
