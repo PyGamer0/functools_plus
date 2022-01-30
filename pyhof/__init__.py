@@ -125,7 +125,7 @@ def foldl(func, start, iterable):
     start: the initial starting value
     iterable: the iterable to reduce over
     """
-    return list(reduce(func, iterable, start))
+    return reduce(func, iterable, start)
 
 
 def foldl1(func, iterable):
@@ -134,7 +134,7 @@ def foldl1(func, iterable):
     func: the function to reduce with
     iterable: the iterable to reduce over
     """
-    return list(reduce(func, iterable))
+    return reduce(func, iterable)
 
 
 def _foldr(func, start, iterable):
@@ -152,7 +152,7 @@ def foldr(func, start, iterable):
     start: the initial starting value
     iterable: the iterable to reduce over
     """
-    return list(_foldr(func, start, iter(iterable)))
+    return _foldr(func, start, iter(iterable))
 
 
 def _foldr1(func, iterable):
@@ -170,7 +170,7 @@ def foldr1(func, iterable):
     iterable: the iterable to reduce over
     """
     try:
-        return list(_foldr1(func, iter(iterable)))
+        return _foldr1(func, iter(iterable))
     except StopIteration:
         raise TypeError("foldr1() of empty sequence")
 
